@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 
 class MyData():
-    def __init__(self, data_type='clf'):
+    def __init__(self, data_type='clf', class_num=2):
         if data_type == 'clf':
             iris = load_iris()
             target = iris.target
-            self.y = target[target!=2]
+            self.y = target[target!=class_num]
             # 説明変数は2つだけ
             self.X = iris.data[target != 2][:, :2]
         elif data_type == 'reg':
@@ -20,6 +20,7 @@ class MyData():
         X, y = self.get_dataset()
         plt.scatter(X[y==0][:, 0], X[y==0][:, 1], color='red')
         plt.scatter(X[y==1][:, 0], X[y==1][:, 1], color='blue')
+        plt.show()
         
     def plot_boundary(self, coef, intercept):
         X, y = self.get_dataset()
